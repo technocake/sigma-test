@@ -1,0 +1,54 @@
+<!-- <META HTTP-EQUIV="REFRESH" CONTENT="5"> -->
+<style type="text/css" media="screen">
+	a { border: 1px solid black; padding: 1em; display: inline-block; margin: 0.5em;}
+
+	a.sorry-mate { background-color: red; }
+</style>
+
+<h3> Respond to query: </h3>
+
+<script>
+function loadQuery() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+     document.getElementById("query").innerHTML = xhttp.responseText;
+     window.setTimeout(loadQuery, 500);
+    }
+  };
+  xhttp.open("GET", "/status-quo", true);
+  xhttp.send();
+
+
+} 
+
+function respond(response) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+     document.getElementById('response').innerHTML = xhttp.responseText;
+      console.log("Response activated: " + response);
+    }
+  };
+  xhttp.open("GET", "/respond/"+response, true);
+  xhttp.send();
+
+
+} 
+
+
+	loadQuery();
+</script>
+
+<h1 id="query">Query:</h1>
+
+Responded:<span id="response"></span>
+
+<nav class="">
+    <ul>
+    <li><a href="#" class="sorry-mate" onclick="respond('None');">Sorry mate...</a></li>
+    {% for map in map_index %}
+        <li><a href="#" onclick="respond('{{ map }}');">{{ map }}</a></li>
+    {% endfor %}
+    </ul>
+</nav>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Explore Sigma</title>
+	<style type="text/css" media="screen">
+		body {
+			margin: 0 auto;
+		}
+		p { line-height: 1.75em; margin-bottom:3em;}
+		div {margin: 0 auto; width: 500px;}
+		input[type=search] {
+			width: 400px;
+			padding: 0.5em;
+		}
+		h3 { color: #8e8e8e; }
+
+		.overlay {
+			position: fixed;
+			top:0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			margin: 0 auto;
+			display: block;
+			background-color: rgba(255,255,255,0.8);
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		.center {
+			margin: 0 auto;
+			margin-top: 50%;
+		}
+
+		.ux-messages h2, img {
+			display: inline-block; color: #333;
+		}
+		img.loading { margin-left: 1em; }
+
+
+	</style>
+
+	<script>
+		function google_search(e) {
+			var q = document.getElementById('q');
+			window.open( 
+				"https://www.google.no#q=" + q.value, 
+				"_blank"
+			);
+			
+		}
+
+		function close(id) {
+			var e = document.getElementById(id);
+			e.setAttribute('class', 'hidden');
+			return false;
+		}
+
+
+		function open(id) {
+			var e = document.getElementById(id);
+			e.setAttribute('class', 'overlay');	
+			return false;
+		}
+
+		function handle_key_input(e) {
+			if (e.keyCode == 27) { // escape key maps to keycode `27`
+		 		close("ux-messages");
+		 	}
+		}
+
+		function setup() {
+			document.getElementById('body').onkeyup = handle_key_input;
+			
+		}
+
+		function focus(id) {
+			var e = document.getElementById(id);
+			e.focus();
+		}
+
+		function post(formid) {
+			open('ux-messages');
+			document.getElementById(formid).submit();
+			document.getElementById('what-for').innerHTML = document.getElementById('q').value;
+		}
+
+		
+
+
+	</script>
+</head>
+<body onload="setup();" id="body">
+<div id="ux-messages" class="hidden">
+	<div class="center">
+		
+		<h2>Searching for <span id='what-for'></span>... <img class="loading" src="http://i290.photobucket.com/albums/ll262/iMew/loading.gif" alt=""></h2>
+		
+	</div>
+</div>
+
+<div id="logo-container">
+	<img src="static/gfx/sigma-logo.svg" />
+</div>
+
+<div id="form-container">
+{% block content %}
+<form id="sigma-search" action="/search" method="get" accept-charset="utf-8">
+	
+	<input type="search" name="q" id="q" value="{{ q }}" placeholder="Search in Sigma" >	
+	<input type="button" name="" value="Search" onclick="post('sigma-search');"> 
+</form>
+{% endblock %}
+</div>
+
+</body>
+</html>

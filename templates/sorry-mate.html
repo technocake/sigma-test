@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<p> Beklager, Sigma har ikke en ressurs til dette søket enda. Kanskje Google kan hjelpe deg? Husk å legge eventuelle ressurser inn i Sigma.
+Sammen kan vi gjøre læring enklere!</p>
+
+
+<div id="form-container">
+<form action="https://www.google.no/#" method="get" accept-charset="utf-8">
+	<h2> Google: </h2>
+	<input type="search" name="q" id="q" value="" placeholder="Search in Google">	
+	<input type="button" name="" value="Search" onclick="google_search(this)">
+</form>
+
+<form action="/search" method="get" accept-charset="utf-8">
+	<h3> Eller søk etter noe annet i Sigma </h3>
+	<input type="search" name="q" value="" placeholder="Search in Sigma">	
+	<input type="submit" name="" value="Search">
+</form>
+</div>
+
+{% endblock %}

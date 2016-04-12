@@ -22,13 +22,15 @@
   </body>
 </html>
 </richcontent>
-<node CREATED="1460421781867" ID="ID_1437221916" MODIFIED="1460421789422">
+<node CREATED="1460421781867" ID="ID_1437221916" MODIFIED="1460422803399">
 <richcontent TYPE="NODE"><html>
   <head>
     
   </head>
   <body>
-    <img src="gfx/comment.png" />
+    <p>
+      <img src="gfx/comment.png" />
+    </p>
   </body>
 </html>
 </richcontent>
