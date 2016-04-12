@@ -2,6 +2,8 @@ from flask import Flask, request, render_template, redirect, url_for, g
 import time
 import os
 import Queue
+import mapper
+
 app = Flask(__name__)
 
 current_response = None
@@ -74,7 +76,8 @@ def sorry_mate():
 
 @app.route("/controller")
 def controller():
-	map_index = ['User Input.mm']
+	#map_index = ['User Input.mm']
+	map_index = mapper.index_maps()
 	return render_template("controller.html", map_index=map_index)
 
 
