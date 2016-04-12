@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Explore Sigma</title>
+	<style type="text/css" media="screen">
+		body {
+			margin: 0 auto;
+		}
+		p { line-height: 1.75em; margin-bottom:3em;}
+		div {margin: 0 auto; width: 500px;}
+		input[type=search] {
+			width: 400px;
+			padding: 0.5em;
+		}
+		h3 { color: #8e8e8e; }
+	</style>
+
+	<script>
+		function google_search(e) {
+			var q = document.getElementById('q');
+			window.open( 
+				"https://www.google.no#q=" + q.value, 
+				"_blank"
+			);
+			
+		}
+
+	</script>
+</head>
+<body>
+<div id="logo-container">
+	<img src="sigma-logo.svg" />
+	<p> Beklager, Sigma har ikke en ressurs til dette søket enda. Kanskje Google kan hjelpe deg? Husk å legge eventuelle ressurser inn i Sigma.
+Sammen kan vi gjøre læring enklere!</p>
+</div>
+
+<div id="form-container">
+<form action="https://www.google.no/#" method="get" accept-charset="utf-8">
+	<h2> Google: </h2>
+	<input type="search" name="q" id="q" value="" placeholder="Search in Google">	
+	<input type="button" name="" value="Search" onclick="google_search(this)">
+</form>
+
+<form action="" method="get" accept-charset="utf-8">
+	<h3> Eller søk etter noe annet i Sigma </h3>
+	<input type="search" name="" value="" placeholder="Search in Sigma">	
+	<input type="submit" name="" value="Search">
+</form>
+</div>
+
+</body>
+</html>
